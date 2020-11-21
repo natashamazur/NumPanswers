@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="//cdn.muicss.com/mui-0.10.3/css/mui.min.css" rel="stylesheet" type="text/css"/>
+    <script src="//cdn.muicss.com/mui-0.10.3/js/mui.min.js"></script>
+    <style>
+        /**
+ * Body CSS
+ */
+        html,
+        body {
+            height: 100%;
+        }
+
+        html,
+        body,
+        input,
+        textarea,
+        button {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+        }
+
+        /**
+         * Sidebar CSS
+         */
+        #sidebar {
+            background-color: #E57373;
+            padding: 15px;
+        }
+
+        @media (min-width: 768px) {
+            #sidebar {
+                position: fixed;
+                top: 0;
+                bottom: 0;
+                width: 220px;
+                height: 100%;
+                padding-top: 30px;
+            }
+        }
+
+        /**
+         * Content CSS
+         */
+        @media (min-width: 768px) {
+            #content {
+                margin-left: 240px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div id="sidebar">
+    <div class="mui--text-light mui--text-display1 mui--align-vertical">NumPanswers</div>
+</div>
+<div id="content" class="mui-container-fluid">
+    <div class="mui-row">
+        <div class="mui-col-sm-10 mui-col-sm-offset-1">
+            <br>
+            <br>
+            <div class="mui--text-dark-secondary mui--text-body2">POSTS</div>
+            <div class="mui-divider"></div>
+            {% for a in articles %}
+                <br>
+                <div class="mui--text-headline">{{ a.title }}</div>
+                <div class="mui--text-dark-secondary"> {{ a.pub_date }}</div>
+                <div> {{ a.text }} </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+</body>
+</html>
