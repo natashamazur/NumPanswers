@@ -1,9 +1,5 @@
 from django.db import models
-
-
-class User(models.Model):
-    login = models.CharField('Логин', max_length=20)
-    name = models.CharField('Псевдоним', max_length=20)
+from django.contrib.auth.models import User
 
 
 class Article(models.Model):
@@ -17,6 +13,3 @@ class Comment(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField('Текст комментария')
-
-
-

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div id="content" class="mui-container-fluid">
+        <div class="mui-row">
+            <div class="mui-col-sm-10 mui-col-sm-offset-1">
+                <br>
+                <br>
+                <div class="mui--text-dark-secondary mui--text-body2">POSTS</div>
+                <div class="mui-divider"></div>
+                <br>
+                <div class="mui--text-headline">{{ article.title }}</div>
+                <div class="mui--text-dark-secondary"> {{ article.pub_date }} by {{ article.author.username }}</div>
+                <div> {{ article.text }} </div>
+                <br>
+                <div class="mui-divider"></div>
+                <br>
+                {% if comments.count != 0 %}
+                    <div>Комментарии:</div>
+                    {% else %}
+                    <div>Комментарии отсутсвуют</div>
+                    <br>
+                {% endif %}
+                {% for c in comments %}
+                    <br>
+                    <div class=comment>
+                        <div> Автор: {{ c.author }}</div>
+                        <div>
+                            Комментарий: {{ c.text }}
+                        </div>
+                    </div>
+                    <br>
+                {% endfor %}
+                <div class="mui-divider"></div>
+                <br>
+                {% if user.is_authenticated %}
+                    <div>Написать комментарий:</div>
+                    <br>
+                    <form action="{% url 'articles:comment' article.id %}" method="POST">
+                        {% csrf_token %}
+                        <textarea name="text" class="comment_form"
+                                  placeholder="Введите текст..."></textarea>
+                        <br>
+                        <br>
+                        <button class="comment_button" type="submit">
+                            Отправить
+                        </button>
+                    </form>
+                {% else %}
+                    Чтобы написать комментарий зарегистрируйтесь ...
+                {% endif %}
+            </div>
+        </div>
+        <br>
+    </div>
+
+{% endblock %}
