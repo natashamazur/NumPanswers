@@ -35,8 +35,23 @@
             padding-left: 10px;
             padding-right: 10px;
             border-radius: 5px;
-            resize: vertical
+            resize: vertical;
         }
+
+        .new_article_form {
+            width: 100%;
+            height: auto;
+            border: solid;
+            border-width: 1px;
+            border-color: lightgray;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
+            border-radius: 5px;
+            resize: vertical;
+        }
+
 
         .comment {
             width: 100%;
@@ -91,7 +106,9 @@
         * Sidebar CSS
         */
 
-        .a_main { color: inherit; }
+        .a_main {
+            color: inherit;
+        }
 
         @keyframes backgroundColorPalette {
             0% {
@@ -142,6 +159,31 @@
             }
         }
 
+        .plus_img {
+            animation-name: backgroundColorPalette;
+            animation-duration: 10s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            animation-timing-function: linear;
+            border-radius: 25px;
+            background-color: #FF0000;
+            float: right;
+            outline: none;
+        }
+
+        .plus_text {
+            width: 150px;
+            margin-left: 150px;
+            white-space: nowrap;
+            font-size: 15pt;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .plus_img:hover {
+            animation-duration: 1s;
+        }
+
+
     </style>
 </head>
 
@@ -149,7 +191,7 @@
 <body>
 <div id="sidebar">
     <div class="mui--text-light mui--text-display1 mui--align-vertical">
-    <a class=a_main href="{% url 'articles:index' %}">NumPanswers</a>
+        <a class=a_main href="{% url 'articles:index' %}">NumPanswers</a>
     </div>
     <br><br><br>
     {% if user.is_authenticated %}

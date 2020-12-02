@@ -7,11 +7,35 @@
                 <br>
                 <div class="mui--text-dark-secondary mui--text-body2">POSTS</div>
                 <div class="mui-divider"></div>
+                <br>
+                {% load static %}
+
+                {% if user.is_authenticated %}
+                    <div style="float: right">
+                        <table>
+                            <tr>
+                                <td class=plus_text>Написать пост</td>
+                                <td>
+
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <input class="plus_img"
+                                               type="image" src="{% static 'images/plus.png' %}"
+                                               width="45px"
+                                               height="45px"
+                                               formaction="{% url 'articles:new_article' %}"/>
+                                    </form>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                {% endif %}
+                <br>
                 {% for a in articles %}
                     <br>
                     <a class="mui--text-headline" href="{% url 'articles:article' a.id %}">{{ a.title }}</a>
                     <div class="mui--text-dark-secondary"> {{ a.pub_date }} by {{ a.author.username }}</div>
-                    <div> {{ a.text | truncatewords:50}} </div>
+                    <div> {{ a.text | truncatewords:50 }} </div>
                 {% endfor %}
             </div>
         </div>

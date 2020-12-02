@@ -6,11 +6,27 @@ from .models import Article
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 
+import datetime
+
 
 def index(request):
     a = Article.objects.order_by('-pub_date')
 
     return render(request, 'articles/list.html', {'articles': a})
+
+
+def new_article(request):
+    return render(request, 'articles/new_article.html')
+
+
+def post_new_article(request):
+    article_title = request.POST['title']
+    article_text = request.POST['text']
+    article_author = request.user
+    article_pub_date = datetime.datetime.now()
+
+    a = Article.objects.create(title=article_title, text=article_text, pub_date=article_pub_date, author=article_author)
+    return HttpResponseRedirect(reverse('articles:article', args=(a.id,)))
 
 
 def register(request):

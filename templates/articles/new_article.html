@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div id="content" class="mui-container-fluid">
+        <div class="mui-row">
+            <div class="mui-col-sm-10 mui-col-sm-offset-1">
+                <br>
+                <br>
+                <br>
+                {% if user.is_authenticated %}
+
+                    <form action="{% url 'articles:post_new_article' %}" method="POST">
+
+                        <input name="title" class="mui--text-headline" style="outline: none; width: 100%; border: none" type="tel"
+                               placeholder="Заголовок">
+                        <div class="mui-divider"></div>
+                        <br>
+                        <div class="mui--text-headline">{{ article.title }}</div>
+                        {% csrf_token %}
+                        <textarea rows=50 name="text" class="new_article_form"
+                                  placeholder="Введите текст..."></textarea>
+                        <br>
+                        <br>
+                        <button class="comment_button" type="submit">
+                            Написать
+                        </button>
+                    </form>
+                {% else %}
+                    Чтобы написать пост зарегистрируйтесь ...
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
